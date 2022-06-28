@@ -1,6 +1,8 @@
+// https://mdbootstrap.com/docs/b5/react/getting-started/installation/
+
 import { useEffect } from "react";
 import "./App.css";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";  //React-Toastify allows you to add notifications to your app with ease. No more nonsense!
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "react-toastify/dist/ReactToastify.css";
 import Home from "./pages/Home";
@@ -23,17 +25,22 @@ function App() {
     dispatch(setUser(user));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+
   return (
     <BrowserRouter>
       <div className="App">
         <Header />
         <ToastContainer />
         <Routes>
+
           <Route path="/" element={<Home />} />
           <Route path="/tours/search" element={<Home />} />
           <Route path="/tours/tag/:tag" element={<TagTours />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
+
           <Route
             path="/addTour"
             element={
@@ -42,6 +49,8 @@ function App() {
               </PrivateRoute>
             }
           />
+
+
           <Route
             path="/editTour/:id"
             element={
@@ -50,7 +59,10 @@ function App() {
               </PrivateRoute>
             }
           />
+
+
           <Route path="/tour/:id" element={<SingleTour />} />
+          
           <Route
             path="/dashboard"
             element={
@@ -59,7 +71,9 @@ function App() {
               </PrivateRoute>
             }
           />
+
           <Route path="*" element={<NotFound />} />
+
         </Routes>
       </div>
     </BrowserRouter>
@@ -67,3 +81,4 @@ function App() {
 }
 
 export default App;
+
