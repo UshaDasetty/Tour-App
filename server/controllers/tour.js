@@ -1,7 +1,13 @@
 import TourModal from "../models/tour.js";
 import mongoose from "mongoose";
 
+
+/********************************************************************************************/
+// Creating a Tour
+
 export const createTour = async (req, res) => {
+  /* When we create a new tour, it will dispaly all existing tour, 
+  and will also add who created that tour, and when */
   const tour = req.body;
   const newTour = new TourModal({
     ...tour,
@@ -9,13 +15,21 @@ export const createTour = async (req, res) => {
     createdAt: new Date().toISOString(),
   });
 
+
   try {
+    // Save new tour to the database
     await newTour.save();
+
+    // returns new tour
     res.status(201).json(newTour);
+
   } catch (error) {
     res.status(404).json({ message: "Something went wrong" });
   }
 };
+
+/********************************************************************************************/
+// Getting all the tours
 
 export const getTours = async (req, res) => {
   const { page } = req.query;
@@ -38,6 +52,8 @@ export const getTours = async (req, res) => {
   }
 };
 
+/********************************************************************************************/
+
 export const getTour = async (req, res) => {
   const { id } = req.params;
   try {
@@ -48,6 +64,8 @@ export const getTour = async (req, res) => {
   }
 };
 
+/********************************************************************************************/
+
 export const getToursByUser = async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) {
@@ -56,6 +74,8 @@ export const getToursByUser = async (req, res) => {
   const userTours = await TourModal.find({ creator: id });
   res.status(200).json(userTours);
 };
+
+/********************************************************************************************/
 
 export const deleteTour = async (req, res) => {
   const { id } = req.params;
@@ -69,6 +89,8 @@ export const deleteTour = async (req, res) => {
     res.status(404).json({ message: "Something went wrong" });
   }
 };
+
+/********************************************************************************************/
 
 export const updateTour = async (req, res) => {
   const { id } = req.params;
@@ -93,6 +115,8 @@ export const updateTour = async (req, res) => {
   }
 };
 
+/********************************************************************************************/
+
 export const getToursBySearch = async (req, res) => {
   const { searchQuery } = req.query;
   try {
@@ -104,6 +128,8 @@ export const getToursBySearch = async (req, res) => {
   }
 };
 
+/********************************************************************************************/
+
 export const getToursByTag = async (req, res) => {
   const { tag } = req.params;
   try {
@@ -114,6 +140,8 @@ export const getToursByTag = async (req, res) => {
   }
 };
 
+/********************************************************************************************/
+
 export const getRelatedTours = async (req, res) => {
   const tags = req.body;
   try {
@@ -123,6 +151,8 @@ export const getRelatedTours = async (req, res) => {
     res.status(404).json({ message: "Something went wrong" });
   }
 };
+
+/********************************************************************************************/
 
 export const likeTour = async (req, res) => {
   const { id } = req.params;
@@ -154,3 +184,5 @@ export const likeTour = async (req, res) => {
     res.status(404).json({ message: error.message });
   }
 };
+
+/********************************************************************************************/

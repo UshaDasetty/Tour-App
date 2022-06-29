@@ -19,11 +19,14 @@ import NotFound from "./pages/NotFound";
 import TagTours from "./pages/TagTours";
 
 function App() {
+
   const dispatch = useDispatch();
+
+  /* It will Check if the User LoggedIn(found in Local Storage), 
+     if yes it will fire the setUser with user Information */ 
   const user = JSON.parse(localStorage.getItem("profile"));
   useEffect(() => {
     dispatch(setUser(user));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
 

@@ -21,6 +21,8 @@ router.post("/relatedTours", getRelatedTours);
 router.get("/", getTours);
 router.get("/:id", getTour);
 
+
+// only Authenticated users can perform these tasks
 router.post("/", auth, createTour);
 router.delete("/:id", auth, deleteTour);
 router.patch("/:id", auth, updateTour);

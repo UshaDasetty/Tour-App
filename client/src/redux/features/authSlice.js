@@ -65,7 +65,7 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     setLogout: (state, action) => {
-      localStorage.clear();
+      localStorage.clear();    // If Local Storage is Cleared, it will logout
       state.user = null;
     },
   },

@@ -19,7 +19,7 @@ import decode from "jwt-decode";
 
 
 const Header = () => {
-  const [show, setShow] = useState(false);
+  const [show, setShow] = useState(false);    // NavBar Toogle
   const [search, setSearch] = useState("");
   const { user } = useSelector((state) => ({ ...state.auth }));
   const dispatch = useDispatch();
@@ -64,14 +64,16 @@ const Header = () => {
     <MDBNavbar fixed="top" expand="lg" style={{ backgroundColor: "#f0e6ea" }}>
       
         <MDBContainer>
+
             <MDBNavbarBrand
               href="/"
               style={{ color: "#606080", fontWeight: "600", fontSize: "22px" }}
             >
-              Touropedia
+              Happy Travels
             </MDBNavbarBrand>
 
 
+            {/* In small Screen, NavBar will Toggle */}
             <MDBNavbarToggler
               type="button"
               aria-expanded="false"
@@ -86,21 +88,27 @@ const Header = () => {
             <MDBCollapse show={show} navbar>
 
                 <MDBNavbarNav right fullWidth={false} className="mb-2 mb-lg-0">
-                  {user?.result?._id && (
-                    <h5 style={{ marginRight: "30px", marginTop: "27px" }}>
-                      Logged in as: {user?.result?.name}
-                    </h5>
-                  )}
+
+                    {/* If User LoggedIn, Have to Diaplay User Name */}
+                    {user?.result?._id && (
+                      <h5 style={{ marginRight: "30px", marginTop: "27px" }}>
+                        Logged in as: {user?.result?.name}
+                      </h5>
+                    )}
+
+
 
                     <MDBNavbarItem>
                       <MDBNavbarLink href="/">
                         <p className="header-text">Home</p>
                       </MDBNavbarLink>
                     </MDBNavbarItem>
+
+
+
+                    {/* If User Found(LoggedIn), Have to show Add Tour & Dashboard */}
                     {user?.result?._id && (
-
                       <>
-
                       <MDBNavbarItem>
                           <MDBNavbarLink href="/addTour">
                             <p className="header-text">Add Tour</p>
@@ -112,9 +120,13 @@ const Header = () => {
                             <p className="header-text">Dashboard</p>
                           </MDBNavbarLink>
                       </MDBNavbarItem>
-
                     </>
                   )}
+
+
+
+                    {/* If User LogedIn, It will Show Logout button. If clickOn Logout it will Logout and Shows Login Form, 
+                        If User not LoggedIn, it will Show Login button. If clickOn Login It will show Login Form */}
                     {user?.result?._id ? (
                       <MDBNavbarItem>
                           <MDBNavbarLink href="/login">
@@ -133,20 +145,21 @@ const Header = () => {
 
                 </MDBNavbarNav>
 
-              <form className="d-flex input-group w-auto" onSubmit={handleSubmit}>
-                  <input
-                    type="text"
-                    className="form-control"
-                    placeholder="Search Tour"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                  />
 
-                  <div style={{ marginTop: "5px", marginLeft: "5px" }}>
-                    <MDBIcon fas icon="search" />
-                  </div>
+                {/* Search Bar */}
+                <form className="d-flex input-group w-auto" onSubmit={handleSubmit}>
+                    <input
+                      type="text"
+                      className="form-control"
+                      placeholder="Search Tour"
+                      value={search}
+                      onChange={(e) => setSearch(e.target.value)}
+                    />
 
-              </form>
+                    <div style={{ marginTop: "5px", marginLeft: "5px" }}>
+                      <MDBIcon fas icon="search" />
+                    </div>
+                </form>
 
             </MDBCollapse>
         </MDBContainer>

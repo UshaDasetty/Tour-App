@@ -139,11 +139,15 @@ const tourSlice = createSlice({
     error: "",
     loading: false,
   },
+
+
   reducers: {
     setCurrentPage: (state, action) => {
       state.currentPage = action.payload;
     },
   },
+
+  
   extraReducers: {
     [createTour.pending]: (state, action) => {
       state.loading = true;
@@ -156,6 +160,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [getTours.pending]: (state, action) => {
       state.loading = true;
     },
@@ -169,6 +175,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [getTour.pending]: (state, action) => {
       state.loading = true;
     },
@@ -180,6 +188,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [getToursByUser.pending]: (state, action) => {
       state.loading = true;
     },
@@ -191,6 +201,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [deleteTour.pending]: (state, action) => {
       state.loading = true;
     },
@@ -208,6 +220,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [updateTour.pending]: (state, action) => {
       state.loading = true;
     },
@@ -229,6 +243,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [likeTour.pending]: (state, action) => {},
     [likeTour.fulfilled]: (state, action) => {
       state.loading = false;
@@ -244,6 +260,7 @@ const tourSlice = createSlice({
     [likeTour.rejected]: (state, action) => {
       state.error = action.payload.message;
     },
+    
 
     [searchTours.pending]: (state, action) => {
       state.loading = true;
@@ -256,6 +273,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [getToursByTag.pending]: (state, action) => {
       state.loading = true;
     },
@@ -267,6 +286,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
     [getRelatedTours.pending]: (state, action) => {
       state.loading = true;
     },
@@ -278,6 +299,8 @@ const tourSlice = createSlice({
       state.loading = false;
       state.error = action.payload.message;
     },
+
+
   },
 });
 

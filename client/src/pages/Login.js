@@ -34,7 +34,7 @@ const Login = () => {
   const navigate = useNavigate();    // Used for navigationss
 
   /********************************************************************************/ 
-  // Used only when we have errors
+  // It will run only when we have error and shows that error using toast 
 
   useEffect(() => {
     error && toast.error(error);
